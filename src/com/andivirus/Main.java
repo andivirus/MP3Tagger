@@ -168,12 +168,17 @@ public class Main {
             }
         })){
             try{
-                MP3 mp3 = new MP3(f);
-                File picture = new File("albumpicture");
-                ImageIO.write(getImageFromClipboard(), "png", picture);
-                mp3.setPicture(PictureType.FRONT_COVER, picture);
-                picture.delete();
-                mp3.save();
+
+                BufferedImage image = getImageFromClipboard();
+                if(image != null) {
+
+                    MP3 mp3 = new MP3(f);
+                    File picture = new File("albumpicture");
+                    ImageIO.write(getImageFromClipboard(), "png", picture);
+                    mp3.setPicture(PictureType.FRONT_COVER, picture);
+                    picture.delete();
+                    mp3.save();
+                }
             }
             catch (IOException e){
                 e.printStackTrace();

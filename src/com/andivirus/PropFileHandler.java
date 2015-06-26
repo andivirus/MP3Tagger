@@ -1,8 +1,6 @@
 package com.andivirus;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
-import java.io.InputStream;
+import java.io.*;
 import java.util.Properties;
 
 /**
@@ -11,12 +9,13 @@ import java.util.Properties;
 public class PropFileHandler {
     Properties prop;
     InputStream inputStream;
+    OutputStream outputStream;
+    String propFileName = "config.properties";
 
     public PropFileHandler() throws IOException {
         prop = new Properties();
-        String propFileName = "config.properties";
+        inputStream = new FileInputStream(propFileName);
 
-        inputStream = getClass().getClassLoader().getResourceAsStream(propFileName);
         if(inputStream != null){
             prop.load(inputStream);
         }else{
@@ -32,7 +31,16 @@ public class PropFileHandler {
     }
 
     public void setPropValues(String key, String value){
+
+
         prop.setProperty(key, value);
+        try {
+            outputStream = new FileOutputStream(propFileName);
+            prop.store(outputStream, null);
+            outputStream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 }
