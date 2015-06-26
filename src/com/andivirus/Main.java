@@ -21,9 +21,20 @@ public class Main {
         if(args.length != 0) {
             Main main = new Main();
             main.setOperations(args);
+            main.execute();
         }
         else{
             System.out.println("Give args");
+        }
+    }
+
+    public void execute(){
+        if(artist != null){
+            setArtist();
+        }
+
+        if(album != null){
+            setAlbum();
         }
     }
 
@@ -49,6 +60,52 @@ public class Main {
             //TODO: //MAYBE: add option for uploading to ftp
         }
     }
+
+    public void setArtist(){
+        File file = new File(path);
+
+        for(File f: file.listFiles(new FilenameFilter(){
+            @Override
+        public boolean accept(File dir, String name){
+                return name.toLowerCase().endsWith(".mp3");
+
+            }
+        })){
+            try{
+                MP3 mp3 = new MP3(f);
+                mp3.setBand(artist);
+                //TODO: Find problem with saving mp3, artist seems to get set up
+                mp3.save();
+                System.out.println("Success, Artist set to " + artist);
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
+
+    public void setAlbum(){
+        File file = new File(path);
+
+        for(File f: file.listFiles(new FilenameFilter(){
+            @Override
+            public boolean accept(File dir, String name){
+                return name.toLowerCase().endsWith(".mp3");
+
+            }
+        })){
+            try{
+                MP3 mp3 = new MP3(f);
+                mp3.setBand(album);
+                mp3.save();
+            }
+            catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+    }
+
     /*
     public void testreadartist(){
         File file = new File(fpath);
