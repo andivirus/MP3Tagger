@@ -17,8 +17,10 @@ public class tagGUI {
     private JLabel coverImageLabel;
     private JPanel tagPanel;
     private JButton runButton;
+    private Main tagger;
 
     public tagGUI() {
+        tagger = new Main();
         pathButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
@@ -28,12 +30,40 @@ public class tagGUI {
                 File file = chooser.getSelectedFile();
                 if(returnval==JFileChooser.APPROVE_OPTION) {
                     pathTextField.setText(file.getAbsolutePath());
+                    runButton.setEnabled(true);
                 }
                 else{
                     pathTextField.setText("Du musst nen Pfad auswaehlen du Nase");
                 }
 
 
+            }
+        });
+
+        runButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent actionEvent) {
+                String path = pathTextField.getText();
+                String artist = artistTextField.getText();
+                String album = albumTextField.getText();
+                String argumentstring = path;
+
+
+                if(!artist.isEmpty()){
+                    argumentstring = argumentstring + " -ar=" + artist;
+                }
+                if(!album.isEmpty()){
+                    argumentstring = argumentstring + " -al=" + album;
+                }
+                if(coverCheckBox.isEnabled()){
+                    argumentstring = argumentstring + " -c";
+                }
+                String[] strings = new String[5];
+                strings = argumentstring.split(" -");
+                for (String s: strings){
+                    System.out.println(s);
+                }
+                //tagger.setOperations();
             }
         });
     }
