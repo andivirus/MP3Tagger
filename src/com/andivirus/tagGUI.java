@@ -10,6 +10,7 @@ import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.util.LinkedList;
 
 /**
  * Created by andrey on 07.07.15.
@@ -90,19 +91,25 @@ public class tagGUI {
                 String path = pathTextField.getText();
                 String artist = artistTextField.getText();
                 String album = albumTextField.getText();
-                String[] arguments = new String[5];
+                LinkedList<String> stringLinkedList = new LinkedList<String>();
+                String[] arguments = new String[4];
 
-                arguments[0] = "-op=" + path;
+                stringLinkedList.add("-op=" + path);
                 if (!artist.isEmpty()) {
-                    arguments[1] = "-ar=" + artist;
+                    stringLinkedList.add("-ar=" + artist);
                 }
                 if (!album.isEmpty()) {
-                    arguments[2] = "-al=" + album;
+                    stringLinkedList.add("-al=" + album);
                 }
                 if (coverCheckBox.isEnabled()) {
-                    arguments[3] = "-c";
+                    stringLinkedList.add("-c");
                 }
 
+                System.out.println("Printing arguments before passed");
+
+                for (int i = 0; i < stringLinkedList.size(); i++) {
+                    arguments[i] = stringLinkedList.get(i);
+                }
                 for (String s : arguments) {
                     System.out.println(s);
                 }

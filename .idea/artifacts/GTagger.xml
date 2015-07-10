@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" build-on-make="true" name="GTagger">
+    <output-path>$PROJECT_DIR$/out/artifacts/GTagger</output-path>
+    <root id="archive" name="GTagger.jar">
+      <element id="module-output" name="MP3Tagger" />
+      <element id="extracted-dir" path="$PROJECT_DIR$/beaglebuddy_mp3/jar/beaglebuddy_mp3.jar" path-in-jar="/" />
+    </root>
+  </artifact>
+</component>
