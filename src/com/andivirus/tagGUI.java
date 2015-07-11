@@ -24,6 +24,7 @@ public class tagGUI {
     private JLabel coverImageLabel;
     private JPanel tagPanel;
     private JButton runButton;
+    private JLabel progressLabel;
     private Main tagger;
 
     public tagGUI() {
@@ -40,6 +41,7 @@ public class tagGUI {
                 if (returnval == JFileChooser.APPROVE_OPTION) {
                     pathTextField.setText(file.getAbsolutePath());
                     runButton.setEnabled(true);
+                    progressLabel.setText("Ready");
                 } else {
                     pathTextField.setText("Du musst nen Pfad auswaehlen du Nase");
                 }
@@ -116,6 +118,7 @@ public class tagGUI {
 
                 tagger.setOperations(arguments);
                 tagger.execute();
+                progressLabel.setText("Done");
             }
         });
     }
