@@ -61,7 +61,7 @@ public class tagGUI {
             });
         }
         catch(IllegalArgumentException e){
-            System.out.println("LEL");
+            e.printStackTrace();
         }
 
         coverImageLabel.addMouseListener(new MouseListener() {
@@ -90,6 +90,8 @@ public class tagGUI {
         runButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent actionEvent) {
+
+                progressLabel.setText("Working...");
                 String path = pathTextField.getText();
                 String artist = artistTextField.getText();
                 String album = albumTextField.getText();
@@ -106,8 +108,6 @@ public class tagGUI {
                 if (coverCheckBox.isEnabled()) {
                     stringLinkedList.add("-c");
                 }
-
-                System.out.println("Printing arguments before passed");
 
                 for (int i = 0; i < stringLinkedList.size(); i++) {
                     arguments[i] = stringLinkedList.get(i);

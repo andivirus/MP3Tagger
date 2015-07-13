@@ -110,7 +110,7 @@ public class Main {
                 System.out.println("-h prints this message");
             }
 
-            //TODO: //MAYBE: add option for uploading to ftp
+            //TODO: MAYBE: add option for uploading to ftp server, for phones with faulty usb ports
         }
     }
 
