@@ -43,7 +43,7 @@ public class tagGUI {
                     runButton.setEnabled(true);
                     progressLabel.setText("Ready");
                 } else {
-                    pathTextField.setText("Du musst nen Pfad auswaehlen du Nase");
+                    progressLabel.setText("No Path Specified");
                 }
 
 
